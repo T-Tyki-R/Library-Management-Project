@@ -8,6 +8,16 @@ class Genre:
         self.category = category
         self.genre_list = {}
 
+    def set_description(self, description):
+        pass
+    def sget_description(self):
+        pass
+    def set_category(self, category):
+        pass
+    def get_category(self):
+        pass
+    
+
     def add_genre(self):  
         genre_name = input("What is the author's name?: ").title()
         self.category = genre_name
@@ -30,7 +40,7 @@ class Genre:
                 for data in line:
                     print(f"{data}: {line[data]}\n")
     
-    def genre_main(self):
+    def genre_menu(self):
         print("\n\tGenre Operation\n1. Add a New Genre\n2. View Genre Details\n3. Display all Genres")
         while True:
             user_choice = int(input("Enter a number corresponding with your choice: "))
