@@ -27,8 +27,9 @@ class MainMenu:
                         ui = Authors()
                         ui.author_menu()
                 case 4:
-                    if __name__ == "__main__":
+                    if __name__ == "__main__"
                        ui = Genre()
+                       ui.genre_menu()
                        pass
                 case 5:
                     print("Thank you for using the Library Managment System. Good bye!")
