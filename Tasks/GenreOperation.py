@@ -1,17 +1,34 @@
 '''#
 Main file for testing
 '''
+
 class Genre:
-    
+    def __init__(self, description, category):
+        self.description = description
+        self.category = category
+        self.genre_list = {}
 
     def add_genre(self):  
-       pass
+        genre_name = input("What is the author's name?: ").title()
+        self.category = genre_name
+        genre_description = input(f"What is the {self.category} genre about?: ").capitalize()
+        self.description = genre_description
+        self.genre_list[f"{self.category} Genre"] = {"Bio" : self.description}
+        return self.genre_list
          
     def view_genre(self):
-        pass
+        search_genre = input("Please enter the genre you wish to search up?: ").capitalize()
+        for name, line in self.genre_list.items():
+            if search_genre == name:
+                print(f"{name}\n")
+                for data in line:
+                    print(f"{data}: {line[data]}\n")
 
     def display_genre(self):
-        pass
+        for name, line in self.genre_list.items():
+                print(f"{name}\n")
+                for data in line:
+                    print(f"{data}: {line[data]}\n")
     
     def genre_main(self):
         print("\n\tGenre Operation\n1. Add a New Genre\n2. View Genre Details\n3. Display all Genres")
@@ -19,9 +36,8 @@ class Genre:
             user_choice = int(input("Enter a number corresponding with your choice: "))
             match user_choice:
                 case 1:
-                   pass
+                    print(self.add_genre)
                 case 2:
-                    pass
+                    self.view_genre()
                 case 3:
-                    pass
-        
+                    self.display_genre()
