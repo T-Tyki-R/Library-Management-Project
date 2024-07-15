@@ -5,11 +5,12 @@ from BooksOperation import Books
 from AuthorOperation import Authors
 from UserOperation import Userdata
 from GenreOperation import Genre
+u_o = Userdata()
 
 class MainMenu:
-    def main():
-
-        print("Welcome to the Library Management System!\n\n\tMain Menu\n1. Book Operation\n2. User Operation\n3. Author Operation\n4. Genre Operation\n5. Exit\n")
+    def main_menu():
+        u_o.exisiting_users_checker()
+        print(f"Hello {u_o.get_name()}. Welcome to the Library Management System!\n\n\tMain Menu\n1. Book Operation\n2. User Operation\n3. Author Operation\n4. Genre Operation\n5. Exit\n")
         while True:
             user_choice = int(input("Enter a number corresponding with your choice: "))
             match user_choice:
@@ -35,4 +36,4 @@ class MainMenu:
                     print("Thank you for using the Library Managment System. Good bye!")
                     break
 
-    print(main())
+    print(main_menu())

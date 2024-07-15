@@ -1,6 +1,8 @@
 '''#
 Main file for testing
 '''
+from UserOperation import Userdata
+u_o = Userdata()
 
 class Genre:
     def __init__(self):
@@ -26,21 +28,31 @@ class Genre:
         return self.genre_list
          
     def view_genre(self):
-        search_genre = input("Please enter the genre you wish to search up?: ").capitalize()
-        for name, line in self.genre_list.items():
-            if search_genre == name:
-                print(f"{name}\n")
-                for data in line:
-                    print(f"{data}: {line[data]}\n")
+        if len(self.genre_list) == 0:
+            print("This page is empty")
+        else:
+            for key, value in self.genre_list.items():
+                print(f"{key}\n")
+            search_genre = input("Please enter the genre you wish to search up?: ").title()
+            for name, line in self.genre_list.items():
+                if search_genre in self.genre_list.keys():
+                    print(f"{name}\n")
+                    for data in line:
+                        print(f"{data}: {line[data]}\n")
+                else:
+                    print(f"{search_genre} is not listed here..")  
 
     def display_genre(self):
-        for name, line in self.genre_list.items():
+        if len(self.genre_list) == 0:
+            print("This page is empty")
+        else:
+            for name, line in self.genre_list.items():
                 print(f"{name}\n")
                 for data in line:
                     print(f"{line[data]}\n")
     
     def genre_menu(self):
-        print("\n\tGenre Operation\n1. Add a New Genre\n2. View Genre Details\n3. Display all Genres")
+        print("\n\tGenre Operation\n1. Add a New Genre\n2. View Genre Details\n3. Display all Genres\n4. Return to Homescreen\n")
         while True:
             user_choice = int(input("Enter a number corresponding with your choice: "))
             match user_choice:
@@ -50,3 +62,5 @@ class Genre:
                     self.view_genre()
                 case 3:
                     self.display_genre()
+                case 4:
+                    pass

@@ -2,6 +2,8 @@
 Author file
 '''
 from random import randint
+from UserOperation import Userdata
+u_o = Userdata()
 
 class Authors:
     # Hooks and Constructors
@@ -60,7 +62,7 @@ class Authors:
                     print(f"{data}: {person[data]}\n")
 
     def author_menu(self):
-        print("\n\tAuthor Operation\n1. Add a New Author\n2. View Author Details\n3. Display all Author")
+        print("\n\tAuthor Operation\n1. Add a New Author\n2. View Author Details\n3. Display all Author\n return to Homescreen")
         while True:
             user_choice = int(input("Enter a number corresponding with your choice: "))
             match user_choice:
@@ -70,4 +72,7 @@ class Authors:
                     self.view_details()
                 case 3:
                     self.display_author()
+                case 4:
+                    pass
+
     
