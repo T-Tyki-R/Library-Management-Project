@@ -1,12 +1,13 @@
 '''#
 Author file
 '''
+from random import randint
 
 class Authors:
     # Hooks and Constructors
-    def __init__(self, name, bio) -> None:
-        self.__author_name = name
-        self.bio = bio
+    def __init__(self):
+        self.__author_name = ""
+        self.bio = ""
         self.author_database = {}
 
 
@@ -23,24 +24,37 @@ class Authors:
         Module Functionality
     '''
     def add_author(self):
-        author_add = len(self.author_database.keys()) + 1
+        author_id_length = 4 
+        author_id = ''.join("{}".format(randint(0, 9)) for i in range(author_id_length))
         author_name = input("What is the author's name?: ").title()
-        self.__author_name = self.set_name(author_name)
+        self.set_name(author_name)
         author_bio = input(f"Provide a short bio about {author_name}: ").capitalize()
-        self.bio = self.set_bio(author_bio)
-        self.author_database[f"Author 00{author_add}"] = {"Name" : self.get_name(), "Bio" : self.get_bio()}
-        return f"This author was saved under the ticket: Author 00{author_add}"
+        self.set_bio(author_bio)
+        self.author_database[f"{str(author_id)}"] = {"Name" : self.get_name(), "Bio" : self.get_bio()}
+        return self.author_database
+    
          
     def view_details(self):
-        author_num = input("Please enter the author ticket you wish to search up?: ").capitalize()
-        for num, person in self.author_database.items():
-            if author_num == num:
-                print(f"{num}\n")
-                for data in person:
-                    print(f"{data}: {person[data]}\n")
+        if len(self.author_database) == 0:
+            print("This page is empty")
+        else:
+            for key, value in self.author_database.items():
+                print(f"Author ID {key}\n")
+            author_num = input("Please enter the 4-digit author ID you wish to search up?: ").capitalize()
+            if author_num in self.author_database.keys():
+                for info, line in self.author_database.items():
+                    print(f"Author ID {info}\n")
+                    for data in line:
+                        print(f"\t {data} - {line[data]}\n")
+            else:
+                print("This ID does not exist.")  
+            
 
     def display_author(self):
-        for num, person in self.author_database.items():
+        if len(self.author_database) == 0:
+            print("This page is empty")
+        else:
+            for num, person in self.author_database.items():
                 print(f"{num}\n")
                 for data in person:
                     print(f"{data}: {person[data]}\n")

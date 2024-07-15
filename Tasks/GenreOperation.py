@@ -3,27 +3,26 @@ Main file for testing
 '''
 
 class Genre:
-    def __init__(self, description, category):
-        self.description = description
-        self.category = category
+    def __init__(self):
+        self.description = ""
+        self.category = ""
         self.genre_list = {}
 
     def set_description(self, description):
-        pass
-    def sget_description(self):
-        pass
+        self.description = description
     def set_category(self, category):
-        pass
+        self.category = category
+    def get_description(self):
+        return self.description
     def get_category(self):
-        pass
-    
+        return self.category
 
     def add_genre(self):  
-        genre_name = input("What is the author's name?: ").title()
-        self.category = genre_name
-        genre_description = input(f"What is the {self.category} genre about?: ").capitalize()
-        self.description = genre_description
-        self.genre_list[f"{self.category} Genre"] = {"Bio" : self.description}
+        genre_name = input("What is the name of genre you wish to add?: ").title()
+        self.set_category(genre_name)
+        genre_description = input(f"What is the {self.get_category().lower()} genre about?: ").capitalize()
+        self.set_description(genre_description)
+        self.genre_list[f"{self.get_category()} Genre"] = {"Description" : self.get_description()}
         return self.genre_list
          
     def view_genre(self):
@@ -38,7 +37,7 @@ class Genre:
         for name, line in self.genre_list.items():
                 print(f"{name}\n")
                 for data in line:
-                    print(f"{data}: {line[data]}\n")
+                    print(f"{line[data]}\n")
     
     def genre_menu(self):
         print("\n\tGenre Operation\n1. Add a New Genre\n2. View Genre Details\n3. Display all Genres")
@@ -46,7 +45,7 @@ class Genre:
             user_choice = int(input("Enter a number corresponding with your choice: "))
             match user_choice:
                 case 1:
-                    print(self.add_genre)
+                    print(self.add_genre())
                 case 2:
                     self.view_genre()
                 case 3:

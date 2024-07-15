@@ -4,26 +4,32 @@ Book file with vital data
 from GenreOperation import Genre
 from AuthorOperation import Authors
 from UserOperation import Userdata
-
-
+from random import randint
 class Books:
     '''#
     Module Functionality
     '''
-    super(Userdata)
-    super(Authors)
-    super(Genre)
-    library_books = {}
-    user_books = {}
+    def __init__(self):
+        self.library_books = {}
+        self.user_books = {}
+        self.author = ""
+        self.title = ""
+        self.isbn = ""
+        self.publication_date = ""
+
+    g_o = Genre()
+    a_o = Authors()
+    u_o = Userdata()
+    
 
     def add_books(self):
         book_number = len(self.library_books.keys()) + 1
-        book_title = input("What is the name of the book?: ").title()
-        book_author = input("What is the name of the author?: ").title()
-        book_isbn = int(input("What is the ISBN of the book?: "))
-        book_publication_date = input("What year was the book published?: ")
-        self.library_books[f"Book {book_number}"] = {"Title": book_title, "Author": book_author, "ISBN": book_isbn, "Publication Date": book_publication_date}
-        Userdata.set_user_books(self.library_books)
+        self.title = input("What is the name of the book?: ").title()
+        self.author = self.a_o.add_author()
+        book_isbn_length = 7
+        self.isbn = ''.join("{}".format(randint(0, 9)) for i in range(book_isbn_length))
+        self.publication_date = input("What year was the book published?: ")
+        self.library_books[f"Book {book_number}"] = {"Title": self.title, "Author": self.author, "ISBN": self.isbn, "Publication Date": self.publication_date}
         return f"This book was saved under Book 00{book_number}"
 
     def borrow_books(self):
