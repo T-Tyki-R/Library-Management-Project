@@ -63,4 +63,5 @@ class Genre:
                 case 3:
                     self.display_genre()
                 case 4:
-                    pass
+                    print(f"Welcome to the Library Management System!\n\n\tMain Menu\n1. Book Operation\n2. User Operation\n3. Author Operation\n4. Genre Operation\n5. Exit\n")
+                    break

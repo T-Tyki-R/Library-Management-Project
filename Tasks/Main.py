@@ -9,9 +9,9 @@ u_o = Userdata()
 
 class MainMenu:
     def main_menu():
-        u_o.exisiting_users_checker()
-        print(f"Hello {u_o.get_name()}. Welcome to the Library Management System!\n\n\tMain Menu\n1. Book Operation\n2. User Operation\n3. Author Operation\n4. Genre Operation\n5. Exit\n")
         while True:
+            u_o.add_switch_account()
+            print(f"Welcome to the Library Management System!\n\n\tMain Menu\n1. Book Operation\n2. User Operation\n3. Author Operation\n4. Genre Operation\n5. Exit\n")
             user_choice = int(input("Enter a number corresponding with your choice: "))
             match user_choice:
                 case 1:
@@ -33,7 +33,7 @@ class MainMenu:
                        ui.genre_menu()
                        pass
                 case 5:
-                    print("Thank you for using the Library Managment System. Good bye!")
+                    return "Thank you for using the Library Managment System. Good bye!"
                     break
 
     print(main_menu())

@@ -6,14 +6,12 @@ from AuthorOperation import Authors
 from UserOperation import Userdata
 from random import randint
 
-
 class Books:
     '''#
     Module Functionality
     '''
     def __init__(self):
         self.library_books = {}
-        self.user_books = {}
         self.title = ""
         self.isbn = ""
         self.publication_date = ""
@@ -60,7 +58,7 @@ class Books:
             if book_num not in self.library_books.keys():
                 return f"This book is not in stock..."
             else:
-                self.user_books[f"{self.get_isbn_id()}"] = self.library_books[f"{self.get_isbn_id()}"]
+                self.u_o.current_account["List of Books"] = self.library_books[f"{self.get_isbn_id()}"]
                 self.library_books.pop(book_num)
             return f"{self.u_o.get_name()}, you borrowed the book from the library."
 
@@ -74,8 +72,8 @@ class Books:
             if book_num not in self.user_books.keys():
                 return f"This book is not in your inventory..."
             else:
-                self.library_books[f"{self.get_isbn_id()}"] = self.user_books[f"{self.get_isbn_id()}"]
-                self.user_books.pop(self.get_isbn_id())
+                self.library_books[f"{self.get_isbn_id()}"] = self.u_o.current_account["List of Books"][f"{self.get_isbn_id()}"]
+                self.u_o.current_account["List of Books"].pop(self.get_isbn_id())
             return f"{self.u_o.get_name()}, you returned the book to the library."
     
     def search_books(self):
@@ -103,10 +101,10 @@ class Books:
                     print(f"{data}: {book[data]}\n")
 
     def display_user_books(self):
-        if len(self.user_books) == 0:
-            print(f"You have n books in your inventory...")
+        if len(self.u_o.current_account["List of Books"]) == 0:
+            print(f"You have no books in your inventory...")
         else:
-            for num, book in self.user_books.items():
+            for num, book in self.u_o.current_account["List of Books"].items():
                 print(f"ISBN ID #{num}\n")
                 for data in book:
                     print(f"{data}: {book[data]}\n")
@@ -129,6 +127,7 @@ class Books:
                 case 6:
                     self.display_user_books()
                 case 7:
-                    pass
+                    print(f"Welcome to the Library Management System!\n\n\tMain Menu\n1. Book Operation\n2. User Operation\n3. Author Operation\n4. Genre Operation\n5. Exit\n")
+                    break
 
                     
